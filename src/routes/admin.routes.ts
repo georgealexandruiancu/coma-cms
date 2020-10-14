@@ -5,10 +5,12 @@ const router = Router();
 // =====================
 // -- CONTROLLERS
 // =====================
-import { CreateAdmin, IndexAdmin } from "../controllers/admin.controller";
+import { CreateAdmin, DeleteAdmin, IndexAdmin, UpdateAdmin } from "../controllers/admin.controller";
 
 router.route("/")
 	.get(IndexAdmin)
-	.post(CreateAdmin);
+	.post(CreateAdmin)
+	.put(UpdateAdmin)
+	.delete(DeleteAdmin);
 
 export default router;
