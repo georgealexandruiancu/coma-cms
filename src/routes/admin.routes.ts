@@ -13,4 +13,7 @@ router.route("/")
 	.put(UpdateAdmin)
 	.delete(DeleteAdmin);
 
+// router.route("/login")
+// 	.post(LoginAdmin);
+
 export default router;
