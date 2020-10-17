@@ -91,7 +91,7 @@ export async function UpdateAdmin (req: Request, res: Response): Promise<Respons
 
 			const conn = await connect();
 
-			await conn.query("UPDATE admins SET ? WHERE id = ?", [updatedAdmin, id]);
+			await conn.query("UPDATE admins SET ?, updated_date=now() WHERE id = ?", [updatedAdmin, id]);
 
 			return res.json({
 				message: "Admin updated successfully",
@@ -168,8 +168,6 @@ export async function LoginAdmin (req: Request, res: Response): Promise<Response
 					email: currentAdmin.email
 				};
 
-				console.log(req.session);
-
 				return res.json({
 					message: "Logged in",
 					status: 200
@@ -204,6 +202,21 @@ export async function LogoutAdmin (req: Request, res: Response): Promise<Respons
 
 		return res.json({
 			message: "Logged out",
+			status: 200
+		});
+	}
+	else {
+		return res.json({
+			message: "Please login first !",
+			status: 401
+		});
+	}
+}
+
+export async function WhoamiAdmin (req: Request, res: Response): Promise<Response> {
+	if (checkIfAdminIsLoggedIn(req.session)) {
+		return res.json({
+			iam: req!.session!.adminLogged,
 			status: 200
 		});
 	}

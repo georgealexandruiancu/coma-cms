@@ -9,6 +9,7 @@ import session from "express-session";
 
 import IndexRouter from "./routes/index.routes";
 import AdminRoutes from "./routes/admin.routes";
+import NavigationRoutes from "./routes/navigation.routes";
 
 export class App {
 
@@ -50,6 +51,7 @@ export class App {
 	routes () {
 		this.app.use("/api", IndexRouter);
 		this.app.use("/api/admins", AdminRoutes);
+		this.app.use("/api/navigation", NavigationRoutes);
 	}
 
 }
