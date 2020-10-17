@@ -1,6 +1,7 @@
 import express, { Application } from "express";
 import morgan from "morgan";
 import * as dotenv from "dotenv";
+import session from "express-session";
 
 // =====================
 // -- ROUTES
@@ -29,6 +30,14 @@ export class App {
 
 	middlewares () {
 		this.app.use(morgan('dev'));
+
+		this.app.use(session({
+			name: "uid_session",
+			secret: "canttouchthis",
+			resave: true,
+			saveUninitialized: true
+		}));
+
 		this.app.use(express.json());
 	}
 
@@ -39,8 +48,8 @@ export class App {
 	}
 
 	routes () {
-		this.app.use(IndexRouter);
-		this.app.use("/admins", AdminRoutes);
+		this.app.use("/api", IndexRouter);
+		this.app.use("/api/admins", AdminRoutes);
 	}
 
 }

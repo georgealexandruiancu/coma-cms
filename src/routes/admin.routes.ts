@@ -5,7 +5,7 @@ const router = Router();
 // =====================
 // -- CONTROLLERS
 // =====================
-import { CreateAdmin, DeleteAdmin, IndexAdmin, UpdateAdmin } from "../controllers/admin.controller";
+import { CreateAdmin, DeleteAdmin, IndexAdmin, UpdateAdmin, LoginAdmin } from "../controllers/admin.controller";
 
 router.route("/")
 	.get(IndexAdmin)
@@ -13,7 +13,7 @@ router.route("/")
 	.put(UpdateAdmin)
 	.delete(DeleteAdmin);
 
-// router.route("/login")
-// 	.post(LoginAdmin);
+router.route("/login")
+	.post(LoginAdmin);
 
 export default router;
