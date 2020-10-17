@@ -197,3 +197,20 @@ export async function LoginAdmin (req: Request, res: Response): Promise<Response
 		});
 	}
 }
+
+export async function LogoutAdmin (req: Request, res: Response): Promise<Response> {
+	if (checkIfAdminIsLoggedIn(req.session)) {
+		delete req!.session!.adminLogged;
+
+		return res.json({
+			message: "Logged out",
+			status: 200
+		});
+	}
+	else {
+		return res.json({
+			message: "Please login first !",
+			status: 401
+		});
+	}
+}
